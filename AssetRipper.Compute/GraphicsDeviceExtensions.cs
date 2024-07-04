@@ -56,12 +56,12 @@ internal static class GraphicsDeviceExtensions
 		nuint maxMemorySize = graphicsDevice.GetMaxMemorySize();
 		if (maxProportion == 1)
 		{
-			return (int)nuint.Min(maxMemorySize, int.MaxValue);
+			return maxMemorySize > int.MaxValue ? int.MaxValue : (int)maxMemorySize;
 		}
 		else
 		{
 			float multiplied = maxProportion * maxMemorySize;
-			return (int)float.Min(multiplied, int.MaxValue);
+			return multiplied > int.MaxValue ? int.MaxValue : (int)multiplied;
 		}
 	}
 }
